@@ -21,6 +21,8 @@
 
 <script>
     import axios from 'axios'
+    import {getServerUrl} from "@/config/sys.js";
+
     export default {
       name: "Login",
       data(){
@@ -32,6 +34,7 @@
       },
       methods:{
         submit(){
+          let url = getServerUrl("login");
           if (this.userName.trim()==''){
             this.errorInfo="用户名不能为空！";
             return;
@@ -41,9 +44,14 @@
             return;
           }
           console.log('ok')
-          axios.post('http://www.open1111.com/login',{"userName":this.userName,"password":this.password})
+          axios.post(url,{"userName":this.userName,"password":this.password})
             .then(response=>{
-              console.log(response)
+              if(response.data.code==0){
+                console.log(response.data.token)
+                window.localStorage.setItem("token",response.data.token)
+              }else{
+                this.errorInfo=response.data.msg;
+              }
             }).catch(error=>{
               this.errorInfo=error;
           })
