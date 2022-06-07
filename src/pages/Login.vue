@@ -64,7 +64,6 @@
 
 <style lang="stylus" scoped>
   .login-logo
-    witdh: 3rem !important;
     height: 3rem;
     background: #10a78e;
     margin: 1rem auto .5rem;
@@ -74,6 +73,8 @@
     border-radius: 50%
     overflow: hidden;
     text-align: center;
+    position relative;
+    width 3rem;
 
   .login-count
     margin: 1rem .8rem;
