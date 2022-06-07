@@ -64,7 +64,7 @@
 
 <style lang="stylus" scoped>
   .login-logo
-    witdh: 3rem;
+    witdh: 3rem !important;
     height: 3rem;
     background: #10a78e;
     margin: 1rem auto .5rem;
