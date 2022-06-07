@@ -49,6 +49,7 @@
               if(response.data.code==0){
                 console.log(response.data.token)
                 window.localStorage.setItem("token",response.data.token)
+                this.$router.replace('/PhoneBook')
               }else{
                 this.errorInfo=response.data.msg;
               }
