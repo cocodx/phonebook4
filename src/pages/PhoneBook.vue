@@ -1,14 +1,26 @@
 <template>
-  <div>电话簿主页</div>
+  <div>
+    <phone-book-header></phone-book-header>
+    <phone-book-search></phone-book-search>
+    <phone-book-list></phone-book-list>
+  </div>
 </template>
 
 
 <script>
   import axios from 'axios'
   import {getServerUrl} from "@/config/sys.js";
+  import PhoneBookHeader from './components/Header'
+  import PhoneBookSearch from './components/Search'
+  import PhoneBookList from './components/List'
 
   export default {
     name:"PhoneBook",
+    components:{
+      PhoneBookHeader,
+      PhoneBookSearch,
+      PhoneBookList
+    },
     methods:{
       refreshToken(){
         let token = window.localStorage.getItem("token");
