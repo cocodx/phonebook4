@@ -1,32 +1,49 @@
 <template>
   <div class="list">
-    <div class="phoneBook">
-      <div class="title">A</div>
-      <div class="item">
-        <img src="http://www.open1111.com:80/image/010.png" alt="">
-        <div class="content border-bottom">alibabaA</div>
-      </div>
-    </div>
-    <div class="phoneBook">
-      <div class="title">B</div>
-      <div class="item">
-        <img src="http://www.open1111.com:80/image/010.png" alt="">
-        <div class="content border-bottom">BBBBB</div>
-      </div>
-    </div>
-    <div class="phoneBook">
-      <div class="title">C</div>
-      <div class="item">
-        <img src="http://www.open1111.com:80/image/010.png" alt="">
-        <div class="content border-bottom">CCCCC</div>
+<!--    <div class="phoneBook">-->
+<!--      <div class="title">A</div>-->
+<!--      <div class="item">-->
+<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
+<!--        <div class="content border-bottom">alibabaA</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="phoneBook">-->
+<!--      <div class="title">B</div>-->
+<!--      <div class="item">-->
+<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
+<!--        <div class="content border-bottom">BBBBB</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="phoneBook">-->
+<!--      <div class="title">C</div>-->
+<!--      <div class="item">-->
+<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
+<!--        <div class="content border-bottom">CCCCC</div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="phoneBook" v-for="(item,key) of phoneBooks" :key="key">
+      <div class="title">{{key}}</div>
+      <div class="item" v-for="innerItem of item" :key="innerItem.id">
+        <img src="getImageUrl(innerItem.image)" alt="">
+        <div class="content border-bottom">{{innerItem.name}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import {getServerUrl} from "@/config/sys";
+
   export default {
-    name:"List"
+    name:"List",
+    props:{
+      phoneBooks:Object
+    },
+    methods:{
+      getImageUrl(image){
+        return getServerUrl('image/'+image)
+      }
+    }
   }
 </script>
 
