@@ -1,37 +1,19 @@
 <template>
-  <div class="list">
-<!--    <div class="phoneBook">-->
-<!--      <div class="title">A</div>-->
-<!--      <div class="item">-->
-<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
-<!--        <div class="content border-bottom">alibabaA</div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="phoneBook">-->
-<!--      <div class="title">B</div>-->
-<!--      <div class="item">-->
-<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
-<!--        <div class="content border-bottom">BBBBB</div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="phoneBook">-->
-<!--      <div class="title">C</div>-->
-<!--      <div class="item">-->
-<!--        <img src="http://www.open1111.com:80/image/010.png" alt="">-->
-<!--        <div class="content border-bottom">CCCCC</div>-->
-<!--      </div>-->
-<!--    </div>-->
-    <div class="phoneBook" v-for="(item,key) of phoneBooks" :key="key">
-      <div class="title">{{key}}</div>
-      <div class="item" v-for="innerItem of item" :key="innerItem.id">
-        <img src="getImageUrl(innerItem.image)" alt="">
-        <div class="content border-bottom">{{innerItem.name}}</div>
+  <div class="list1 wrapper">
+    <div class="content">
+      <div class="phoneBook" v-for="(item,key) of phoneBooks" :key="key">
+        <div class="title">{{key}}</div>
+        <div class="item" v-for="innerItem of item" :key="innerItem.id">
+          <img src="getImageUrl(innerItem.image)" alt="">
+          <div class="content1 border-bottom">{{innerItem.name}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Bscroll from 'better-scroll'
   import {getServerUrl} from "@/config/sys";
 
   export default {
@@ -43,6 +25,9 @@
       getImageUrl(image){
         return getServerUrl('image/'+image)
       }
+    },
+    mounted() {
+      let bs = new Bscroll('.wrapper', {})
     }
   }
 </script>
@@ -54,7 +39,7 @@
     &:before
       border-color: $borderColor
 
-  .list
+  .list1
     overflow: hidden
     position: absolute
     top: 1.58rem
@@ -75,7 +60,7 @@
         width: .8rem
         height: .8rem
         border-radius: .2rem
-      .content
+      .content1
         padding-left: 1rem
         font-size: .4rem
         padding-bottom: .3rem

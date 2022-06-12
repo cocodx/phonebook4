@@ -39,7 +39,7 @@
           console.log(error)
         })
       },
-      getPhoneBook(){
+      getPhoneBooks(){
         let token = window.localStorage.getItem("token");
         axios.defaults.headers.common['token']=token
         let url = getServerUrl("phoneBook/loadAll");
@@ -54,7 +54,7 @@
     },
     mounted() {
       setInterval(this.refreshToken,1000*60*10);//10分钟刷新一次
-      this.getPhoneBook(); //加载所有电话簿信息
+      this.getPhoneBooks(); //加载所有电话簿信息
     }
   }
 </script>
