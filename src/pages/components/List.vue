@@ -1,7 +1,7 @@
 <template>
   <div class="list1 wrapper">
     <div class="content">
-      <div class="phoneBook" v-for="(item,key) of phoneBooks" :key="key">
+      <div class="phoneBook" v-for="(item,key) of phoneBooks" :key="key" :ref="key">
         <div class="title">{{key}}</div>
         <div class="item" v-for="innerItem of item" :key="innerItem.id">
           <img src="getImageUrl(innerItem.image)" alt="">
@@ -19,7 +19,8 @@
   export default {
     name:"List",
     props:{
-      phoneBooks:Object
+      phoneBooks:Object,
+      letter:String
     },
     methods:{
       getImageUrl(image){
@@ -27,7 +28,15 @@
       }
     },
     mounted() {
-      let bs = new Bscroll('.wrapper', {})
+      this.scroll = new Bscroll('.wrapper', {})
+    },
+    watch:{
+      letter(){
+        if(this.letter){
+          const element=this.$refs[this.letter][0]
+          this.scroll.scrollToElement(element)
+        }
+      }
     }
   }
 </script>
